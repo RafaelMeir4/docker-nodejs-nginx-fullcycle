@@ -17,11 +17,20 @@ services:
     build:
       context: nodejs
     container_name: app
-    entrypoint: ["dockerize", "-wait", "tcp://db:3306", "-timeout", "20s", "node", "index.js"]
+    entrypoint:
+      [
+        "dockerize",
+        "-wait",
+        "tcp://db:3306",
+        "-timeout",
+        "20s",
+        "node",
+        "index.js",
+      ]
     networks:
       - node-network
     volumes:
-      - ./nodejs:/usr/src/app
+      - ./nodejs:/app
     tty: true
     depends_on:
       - db
