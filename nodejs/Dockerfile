@@ -21,7 +21,8 @@ COPY --from=builder /usr/local/bin/dockerize /usr/local/bin/dockerize
 COPY package*.json ./
 
 RUN npm ci --only=production && \
-    npm cache clean --force
+    npm cache clean --force && \
+    npm install
 
 COPY --from=builder /usr/src/app/index.js ./
 
